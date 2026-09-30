@@ -17,6 +17,7 @@ const Tooltip = ({ title, content }: { title: string, content: string }) => (
 );
 
 export function SolanaPanelView(props: SolanaPanelViewProps) {
+  const [useCustom, setUseCustom] = React.useState(false);
   const shortAddr = (addr?: string) => addr ? `${addr.slice(0, 4)}...${addr.slice(-4)}` : '';
 
   return (
@@ -83,16 +84,34 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
             />
           </div>
           
-          <select 
-            value={props.mintAddress} 
-            onChange={(e) => props.setMintAddress(e.target.value)}
-            className={`${s.input} mb-2 appearance-none`}
-          >
-            <option value="">-- Select Active Mint Address --</option>
-            {props.availableMints.map(mint => (
-              <option key={mint} value={mint}>{mint}</option>
-            ))}
-          </select>
+          <div className="flex flex-col gap-2 mb-2">
+            {!useCustom ? (
+              <select 
+                value={props.mintAddress} 
+                onChange={(e) => props.setMintAddress(e.target.value)}
+                className={`${s.input} appearance-none cursor-pointer`}
+              >
+                <option value="">-- Select from your wallet's tokens --</option>
+                {props.availableMints.map(mint => (
+                  <option key={mint} value={mint}>{mint}</option>
+                ))}
+              </select>
+            ) : (
+              <input
+                placeholder="Paste external Mint Address..."
+                value={props.mintAddress}
+                onChange={(e) => props.setMintAddress(e.target.value.trim())}
+                className={s.input}
+              />
+            )}
+            
+            <button 
+              onClick={() => setUseCustom(!useCustom)}
+              className="text-[10px] font-bold text-neutral-500 hover:text-neutral-300 self-end uppercase tracking-wider transition-colors"
+            >
+              {useCustom ? 'Select Existing Token' : 'Enter Custom Address'}
+            </button>
+          </div>
 
           <input
             placeholder="Amount to mint"

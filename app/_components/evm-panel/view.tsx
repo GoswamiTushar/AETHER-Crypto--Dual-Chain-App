@@ -35,10 +35,24 @@ export function EvmPanelView(props: EvmPanelViewProps) {
       <div className={s.balanceCard}>
         <div className={s.statLabel}>{props.symbol} Balance</div>
         <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-neutral-400">{props.symbol}</span></div>
-        <div className={s.statSub}>Contract: {shortAddr(props.contractAddress)}</div>
       </div>
 
       <div className="flex flex-col gap-4">
+        <div className={s.formSection}>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Active Contract Address" 
+              content="The ERC-20 contract you are currently interacting with. You can deploy one below, or paste an existing contract address (e.g. from Remix IDE) here to interact with it."
+            />
+          </div>
+          <input
+            placeholder="0x... Contract Address"
+            value={props.contractAddress}
+            onChange={(e) => props.onContractAddressChange(e.target.value)}
+            className={s.input}
+          />
+        </div>
+
         <ContractDeployer onDeployed={props.onContractAddressChange} />
 
         <div className={s.formSection}>

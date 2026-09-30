@@ -93,19 +93,19 @@ export function WelcomeScreen() {
               <div className="flex bg-[#0a0a0a] rounded-none p-1 text-[11px] font-bold text-neutral-500 border border-neutral-800">
                 <button 
                   onClick={() => setImportMode('mnemonic')}
-                  className={`flex-1 py-3 transition-colors ${importMode === 'mnemonic' ? 'bg-white text-black' : 'hover:text-white'}`}
+                  className={`flex-1 py-3 transition-colors ${importMode === 'mnemonic' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
                   BIP-39
                 </button>
                 <button 
                   onClick={() => setImportMode('evm')}
-                  className={`flex-1 py-3 transition-colors ${importMode === 'evm' ? 'bg-white text-black' : 'hover:text-white'}`}
+                  className={`flex-1 py-3 transition-colors ${importMode === 'evm' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
                   EVM
                 </button>
                 <button 
                   onClick={() => setImportMode('solana')}
-                  className={`flex-1 py-3 transition-colors ${importMode === 'solana' ? 'bg-white text-black' : 'hover:text-white'}`}
+                  className={`flex-1 py-3 transition-colors ${importMode === 'solana' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
                   Solana
                 </button>
@@ -118,10 +118,10 @@ export function WelcomeScreen() {
                 autoFocus
               />
               <div className="flex gap-2">
-                <button onClick={() => setView('main')} className="w-1/3 px-4 py-4 bg-transparent border border-neutral-800 hover:bg-neutral-900 text-sm font-bold text-neutral-400 transition-all">
+                <button onClick={() => setView('main')} className="w-1/3 px-4 py-4 bg-transparent border border-neutral-800 hover:bg-neutral-700 text-sm font-bold text-neutral-300 transition-all">
                   Cancel
                 </button>
-                <button onClick={handleImportSubmit} className="flex-1 px-4 py-4 bg-white hover:bg-neutral-200 text-sm font-bold text-black transition-all flex items-center justify-center gap-2">
+                <button onClick={handleImportSubmit} className="flex-1 px-4 py-4 bg-neutral-200 hover:bg-neutral-300 text-sm font-bold text-neutral-900 transition-all flex items-center justify-center gap-2">
                   Launch <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -134,13 +134,13 @@ export function WelcomeScreen() {
                 <p className="text-xs text-neutral-500 uppercase tracking-widest font-bold flex items-center gap-2">
                   <KeyRound className="w-3 h-3" /> Ephemeral Root Seed
                 </p>
-                <p className="text-sm font-mono text-neutral-200 select-all leading-loose">{generatedMnemonic}</p>
+                <p className="text-sm font-mono text-neutral-300 select-all leading-loose">{generatedMnemonic}</p>
               </div>
               <div className="flex gap-2 mt-2">
-                <button onClick={() => setView('main')} className="w-1/3 px-4 py-4 bg-transparent border border-neutral-800 hover:bg-neutral-900 text-sm font-bold text-neutral-400 transition-all">
+                <button onClick={() => setView('main')} className="w-1/3 px-4 py-4 bg-transparent border border-neutral-800 hover:bg-neutral-700 text-sm font-bold text-neutral-300 transition-all">
                   Cancel
                 </button>
-                <button onClick={handleCreateConfirm} className="flex-1 px-4 py-4 bg-white hover:bg-neutral-200 text-sm font-bold text-black transition-all flex items-center justify-center gap-2">
+                <button onClick={handleCreateConfirm} className="flex-1 px-4 py-4 bg-neutral-200 hover:bg-neutral-300 text-sm font-bold text-neutral-900 transition-all flex items-center justify-center gap-2">
                   Launch Workspace <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

@@ -4,11 +4,28 @@ import React from 'react';
 import { ContractDeployerViewProps } from './types';
 import { deployerStyles as s } from './styles';
 
+import { Info } from 'lucide-react';
+
+const Tooltip = ({ title, content }: { title: string, content: string }) => (
+  <div className="group relative flex items-center gap-2 cursor-help">
+    <span>{title}</span>
+    <Info className="w-3.5 h-3.5 text-neutral-500" />
+    <div className="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-[#0a0a0a] border border-neutral-800 text-[11px] font-normal text-neutral-300 normal-case tracking-normal z-50 shadow-xl leading-relaxed pointer-events-none">
+      {content}
+    </div>
+  </div>
+);
+
 export function ContractDeployerView(props: ContractDeployerViewProps) {
   return (
     <div className={s.container}>
       <div className={s.headerRow}>
-        <span className={s.title}>In-App ERC-20 Deployer</span>
+        <span className={s.title}>
+          <Tooltip 
+            title="Deploy ERC-20 Contract" 
+            content="Deploys a custom ERC-20 Smart Contract directly from your wallet to the Ethereum Sepolia network. Requires a small amount of SepoliaETH for gas."
+          />
+        </span>
         <button
           onClick={() => props.setIsOpen(!props.isOpen)}
           className={s.toggleBtn}
@@ -19,9 +36,6 @@ export function ContractDeployerView(props: ContractDeployerViewProps) {
 
       {props.isOpen && (
         <div className="flex flex-col gap-2.5 pt-1">
-          <p className="text-[11px] text-neutral-400">
-            Deploys a custom ERC-20 contract directly from your in-app wallet to Sepolia. Requires a small amount of SepoliaETH for gas.
-          </p>
 
           <div className={s.formGrid}>
             <input
@@ -61,7 +75,7 @@ export function ContractDeployerView(props: ContractDeployerViewProps) {
           )}
 
           {props.deployedAddress && (
-            <div className="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-2 flex items-center justify-between">
+            <div className="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-none p-3 flex items-center justify-between">
               <span>Deployed: {props.deployedAddress.slice(0, 6)}...{props.deployedAddress.slice(-4)}</span>
               <a
                 href={`https://sepolia.etherscan.io/address/${props.deployedAddress}`}

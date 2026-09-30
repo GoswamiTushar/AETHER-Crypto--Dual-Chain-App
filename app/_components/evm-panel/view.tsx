@@ -5,6 +5,18 @@ import { EvmPanelViewProps } from './types';
 import { evmStyles as s } from './styles';
 import { ContractDeployer } from './contract-deployer';
 
+import { Info } from 'lucide-react';
+
+const Tooltip = ({ title, content }: { title: string, content: string }) => (
+  <div className="group relative flex items-center gap-2 cursor-help">
+    <span>{title}</span>
+    <Info className="w-3.5 h-3.5 text-neutral-500" />
+    <div className="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-[#0a0a0a] border border-neutral-800 text-[11px] font-normal text-neutral-300 normal-case tracking-normal z-50 shadow-xl leading-relaxed pointer-events-none">
+      {content}
+    </div>
+  </div>
+);
+
 export function EvmPanelView(props: EvmPanelViewProps) {
   const shortAddr = (addr?: string) => addr ? `${addr.slice(0, 6)}...${addr.slice(-4)}` : '';
 
@@ -27,15 +39,15 @@ export function EvmPanelView(props: EvmPanelViewProps) {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between text-xs text-neutral-400">
-          <span>In-App Signer: {shortAddr(props.address)}</span>
-          <span className="text-[11px] text-emerald-400 font-medium">BIP-44 Key Loaded</span>
-        </div>
-
         <ContractDeployer onDeployed={props.onContractAddressChange} />
 
         <div className={s.formSection}>
-          <div className={s.sectionTitle}><span>Mint Tokens</span></div>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Mint Tokens" 
+              content="Generates new ERC-20 tokens from your active Smart Contract and deposits them into the specified wallet address. If left blank, it defaults to your own wallet."
+            />
+          </div>
           <input
             placeholder="Recipient (default: self)"
             value={props.mintTo}
@@ -55,7 +67,12 @@ export function EvmPanelView(props: EvmPanelViewProps) {
         </div>
 
         <div className={s.formSection}>
-          <div className={s.sectionTitle}><span>Send Tokens</span></div>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Send Tokens" 
+              content="Transfers ERC-20 tokens from your wallet to another Ethereum wallet address."
+            />
+          </div>
           <input
             placeholder="Recipient 0x... address"
             value={props.sendTo}

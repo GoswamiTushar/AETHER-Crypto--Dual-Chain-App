@@ -4,6 +4,18 @@ import React from 'react';
 import { SolanaPanelViewProps } from './types';
 import { solanaStyles as s } from './styles';
 
+import { Info } from 'lucide-react';
+
+const Tooltip = ({ title, content }: { title: string, content: string }) => (
+  <div className="group relative flex items-center gap-2 cursor-help">
+    <span>{title}</span>
+    <Info className="w-3.5 h-3.5 text-neutral-500" />
+    <div className="hidden group-hover:block absolute bottom-full left-0 mb-2 w-64 p-3 bg-[#0a0a0a] border border-neutral-800 text-[11px] font-normal text-neutral-300 normal-case tracking-normal z-50 shadow-xl leading-relaxed pointer-events-none">
+      {content}
+    </div>
+  </div>
+);
+
 export function SolanaPanelView(props: SolanaPanelViewProps) {
   const shortAddr = (addr?: string) => addr ? `${addr.slice(0, 4)}...${addr.slice(-4)}` : '';
 
@@ -35,13 +47,13 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
       </div>
 
       <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-between text-xs text-neutral-400">
-          <span>In-App Signer: {shortAddr(props.publicKeyStr)}</span>
-          <span className="text-[11px] text-emerald-400 font-medium">Ed25519 Key Loaded</span>
-        </div>
-
         <div className={s.formSection}>
-          <div className={s.sectionTitle}><span>1. Create Token Mint Contract (Public/Private Keys)</span></div>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Create Token Mint Contract" 
+              content="Deploys a new SPL Token Mint to the Solana blockchain. Your active wallet will be set as the Mint Authority, allowing you to create new tokens."
+            />
+          </div>
           
           <div className="flex gap-2 mb-2">
             <input
@@ -59,12 +71,17 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
           </div>
 
           <button disabled={props.loading} onClick={props.onCreateMintAndAta} className={s.btnOutline}>
-            {props.loading ? 'Creating...' : '+ Create New Mint & ATA'}
+            {props.loading ? 'Creating...' : '+ Create New Mint & Associated Token Account'}
           </button>
         </div>
 
         <div className={s.formSection}>
-          <div className={s.sectionTitle}><span>2. Mint (Print) Tokens into your Wallet (ATA)</span></div>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Mint Tokens into Associated Token Account" 
+              content="Generates new tokens from your Mint Contract and deposits them into your wallet's Associated Token Account (ATA)."
+            />
+          </div>
           
           <select 
             value={props.mintAddress} 
@@ -85,12 +102,17 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
             className={s.input}
           />
           <button disabled={props.loading || !props.mintAddress || !props.mintAmount} onClick={props.onMintToAta} className={s.btnPrimary}>
-            {props.loading ? 'Minting...' : 'Mint to My ATA'}
+            {props.loading ? 'Minting...' : 'Mint to My Associated Token Account'}
           </button>
         </div>
 
         <div className={s.formSection}>
-          <div className={s.sectionTitle}><span>3. Send Tokens</span></div>
+          <div className={s.sectionTitle}>
+            <Tooltip 
+              title="Send SPL Tokens" 
+              content="Transfers SPL tokens from your Associated Token Account to another Solana wallet address."
+            />
+          </div>
           <input
             placeholder="Recipient Solana Address"
             value={props.sendTo}

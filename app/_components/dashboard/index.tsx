@@ -34,13 +34,13 @@ export function Dashboard() {
     if (selectedChain === 'evm') {
       if (!wallet?.evm) {
         return (
-          <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-neutral-900 border border-neutral-800 rounded-2xl animate-in fade-in">
+          <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-[#131315] border border-neutral-800 rounded-none animate-in fade-in">
             <Lock className="w-8 h-8 text-neutral-500 mb-4" />
-            <h3 className="text-lg font-bold text-white mb-2">Ethereum Panel Locked</h3>
+            <h3 className="text-lg font-bold text-neutral-200 mb-2">Ethereum Panel Locked</h3>
             <p className="text-sm text-neutral-400 mb-6 max-w-sm">
               You did not import an Ethereum Private Key or a 12-Word Recovery Phrase.
             </p>
-            <button onClick={logout} className="px-5 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold transition-colors">
+            <button onClick={logout} className="px-5 py-2 rounded-none bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-semibold transition-colors border border-neutral-700">
               Return to Import Screen
             </button>
           </div>
@@ -50,13 +50,13 @@ export function Dashboard() {
     } else {
       if (!wallet?.solana) {
         return (
-          <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-neutral-900 border border-neutral-800 rounded-2xl animate-in fade-in">
+          <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-[#131315] border border-neutral-800 rounded-none animate-in fade-in">
             <Lock className="w-8 h-8 text-neutral-500 mb-4" />
-            <h3 className="text-lg font-bold text-white mb-2">Solana Panel Locked</h3>
+            <h3 className="text-lg font-bold text-neutral-200 mb-2">Solana Panel Locked</h3>
             <p className="text-sm text-neutral-400 mb-6 max-w-sm">
               You did not import a Solana Private Key or a 12-Word Recovery Phrase.
             </p>
-            <button onClick={logout} className="px-5 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold transition-colors">
+            <button onClick={logout} className="px-5 py-2 rounded-none bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-semibold transition-colors border border-neutral-700">
               Return to Import Screen
             </button>
           </div>
@@ -67,7 +67,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#000000] text-neutral-200 flex flex-col items-center justify-between p-4 sm:p-8 overflow-x-hidden selection:bg-white selection:text-black">
+    <div className="relative min-h-screen bg-[#0f0f11] text-neutral-300 flex flex-col items-center justify-between p-4 sm:p-8 overflow-x-hidden selection:bg-neutral-800 selection:text-white">
       <div className="w-full max-w-4xl flex flex-col gap-6 z-10">
         <VaultHeader
           selectedChain={selectedChain}

@@ -14,10 +14,10 @@ export function EvmPanel() {
   const [sendTo, setSendTo] = useState('');
   const [sendAmount, setSendAmount] = useState('');
 
-  const token = useInAppEvm(wallet?.evm.account, contractAddress);
+  const token = useInAppEvm(wallet?.evm?.account, contractAddress);
 
   const handleMint = () => {
-    if (!mintAmount || !wallet) return;
+    if (!mintAmount || !wallet?.evm) return;
     const target = (mintTo.trim() || wallet.evm.address) as `0x${string}`;
     token.mint(target, mintAmount, () => setMintAmount(''));
   };
@@ -33,7 +33,7 @@ export function EvmPanel() {
   return (
     <EvmPanelView
       isConnected={!!wallet}
-      address={wallet?.evm.address}
+      address={wallet?.evm?.address}
       contractAddress={contractAddress}
       symbol={token.symbol}
       balance={token.balance}

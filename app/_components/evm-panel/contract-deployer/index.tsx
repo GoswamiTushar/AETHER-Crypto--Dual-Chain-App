@@ -20,7 +20,7 @@ export function ContractDeployer({ onDeployed }: ContractDeployerProps) {
   const [error, setError] = useState<string>();
 
   const handleDeploy = async () => {
-    if (!wallet?.evm.account || !tokenName || !tokenSymbol) return;
+    if (!wallet?.evm?.account || !tokenName || !tokenSymbol) return;
     setIsDeploying(true);
     setError(undefined);
     try {

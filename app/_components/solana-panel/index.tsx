@@ -48,8 +48,8 @@ export function SolanaPanel() {
   const [balance, setBalance] = useState('0');
   const [nativeBalance, setNativeBalance] = useState('0');
 
-  const activePubkeyStr = wallet?.solana.keypair.publicKey.toBase58();
-  const inApp = useInAppSolana(connection, wallet?.solana.keypair);
+  const activePubkeyStr = wallet?.solana?.keypair.publicKey.toBase58();
+  const inApp = useInAppSolana(connection, wallet?.solana?.keypair);
   useEffect(() => {
     if (!activePubkeyStr) return;
     

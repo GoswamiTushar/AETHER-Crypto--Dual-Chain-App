@@ -3,6 +3,7 @@
 import React from 'react';
 import { VaultHeaderProps } from './types';
 import { headerStyles as s } from './styles';
+import { Layers } from 'lucide-react';
 import { useWalletMode } from '@/app/_context/WalletModeContext';
 
 export function VaultHeaderView(p: VaultHeaderProps) {
@@ -11,23 +12,14 @@ export function VaultHeaderView(p: VaultHeaderProps) {
   return (
     <header className={s.header}>
       <div className={s.brandCol}>
-        <div className={s.topBadgeRow}>
-          <div className={s.atlasBadge}>
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-            In-Memory Ephemeral
-          </div>
-          <span className="text-[10px] uppercase font-bold text-neutral-500 tracking-wider">
-            Self-Sovereign Keystore
-          </span>
-        </div>
         <div className={s.titleRow}>
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-base shadow-lg shadow-indigo-500/30">
-            ⚡
+          <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white shadow-sm">
+            <Layers className="w-4 h-4" />
           </div>
-          <h1 className={s.title}>Aetherius Vault</h1>
+          <h1 className={s.title}>Aetherius</h1>
         </div>
         <p className={s.subtitle}>
-          All-in-one cryptographic multi-chain platform. Deploy smart contracts, mint assets, and manage dual EVM & Solana keys.
+          Unified multi-chain development environment. Deploy smart contracts, mint assets, and manage dual EVM & Solana keys in-memory.
         </p>
       </div>
 

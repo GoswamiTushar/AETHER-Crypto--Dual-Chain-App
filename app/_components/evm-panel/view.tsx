@@ -12,8 +12,8 @@ export function EvmPanelView(props: EvmPanelViewProps) {
     <div className={s.card}>
       <div className={s.header}>
         <div className={s.titleRow}>
-          <div className="h-3 w-3 rounded-full bg-indigo-500 animate-pulse" />
-          <h2 className="text-lg font-bold text-white tracking-wide">Ethereum Sepolia</h2>
+          <div className="h-3 w-3 rounded-full bg-neutral-300 animate-pulse" />
+          <h2 className="text-lg font-semibold text-white tracking-wide">Ethereum Sepolia</h2>
         </div>
         <span className={`${s.badge} ${props.isConnected ? s.badgeConnected : s.badgeDisconnected}`}>
           {props.isConnected ? 'In-App Active' : 'Initializing'}
@@ -22,7 +22,7 @@ export function EvmPanelView(props: EvmPanelViewProps) {
 
       <div className={s.balanceCard}>
         <div className={s.statLabel}>{props.symbol} Balance</div>
-        <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-indigo-400">{props.symbol}</span></div>
+        <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-neutral-400">{props.symbol}</span></div>
         <div className={s.statSub}>Contract: {shortAddr(props.contractAddress)}</div>
       </div>
 
@@ -77,7 +77,7 @@ export function EvmPanelView(props: EvmPanelViewProps) {
         {props.txHash && (
           <div className={s.txNotice}>
             <span className="font-semibold text-neutral-300">Transaction Confirmed:</span>
-            <a href={`https://sepolia.etherscan.io/tx/${props.txHash}`} target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">
+            <a href={`https://sepolia.etherscan.io/tx/${props.txHash}`} target="_blank" rel="noreferrer" className="text-neutral-300 hover:text-white hover:underline transition-colors">
               View on Etherscan
             </a>
           </div>

@@ -17,7 +17,7 @@ export function CardView(p: CardViewStateProps) {
           <div className={s.shineOverlay} />
           <div className={s.badgeRow}>
             <div className={`${s.networkBadge} ${isEvm ? s.evmBadge : s.solanaBadge}`}>
-              <span className="text-base">{isEvm ? '🔷' : '🟣'}</span>
+              <div className={`w-2 h-2 rounded-full ${isEvm ? 'bg-blue-400' : 'bg-purple-400'} animate-pulse`} />
               <span>{isEvm ? 'Ethereum Sepolia Testnet' : 'Solana Devnet'}</span>
             </div>
           </div>
@@ -36,11 +36,11 @@ export function CardView(p: CardViewStateProps) {
 
           <div className={s.actionRow}>
             <button onClick={p.onToggleReveal} className={s.chipBtn}>
-              {p.revealed ? '🙈 Hide Seed Phrase' : '👁️ Reveal 12-Word Seed'}
+              {p.revealed ? 'Hide Recovery Phrase' : 'Reveal Recovery Phrase'}
             </button>
             {!isEvm && (
               <button disabled={p.airdropping} onClick={p.onAirdrop} className={s.faucetBtn}>
-                {p.airdropping ? 'Airdropping...' : p.airdropSuccess ? '✓ 1 SOL Received' : '💧 Request 1 SOL Airdrop'}
+                {p.airdropping ? 'Requesting...' : p.airdropSuccess ? '✓ 1 SOL Received' : 'Request 1 SOL Airdrop'}
               </button>
             )}
           </div>
@@ -58,7 +58,7 @@ export function CardView(p: CardViewStateProps) {
                   <span>{isEvm ? 'EVM Private Key' : 'Solana Private Key'}</span>
                   <span className="text-red-500/60 font-normal uppercase">Do Not Share</span>
                 </div>
-                <div className="p-2 rounded-lg bg-red-950/30 border border-red-900/50 text-[10px] font-mono text-red-200 break-all select-all">
+                <div className="p-3 rounded-none bg-red-950/30 border border-red-900/50 text-[10px] font-mono text-red-200 break-all select-all">
                   {isEvm 
                     ? (p.wallet?.evm?.privateKey || 'Please log out and log back in to generate EVM key')
                     : (p.wallet?.solana?.privateKey || (p.wallet?.solana?.keypair ? 'Please log out and log back in to format Solana key' : ''))
@@ -75,7 +75,7 @@ export function CardView(p: CardViewStateProps) {
                   </div>
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     {words.map((w, i) => (
-                      <div key={i} className="px-2.5 py-1.5 rounded-lg bg-neutral-900 border border-neutral-800 text-xs font-mono text-neutral-300">
+                      <div key={i} className="px-3 py-2 rounded-none bg-[#050505] border border-neutral-800 text-xs font-mono text-neutral-300">
                         <span className="text-neutral-500 text-[10px] mr-1.5">{i + 1}.</span>{w}
                       </div>
                     ))}

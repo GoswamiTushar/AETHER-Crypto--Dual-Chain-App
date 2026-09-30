@@ -11,7 +11,7 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
     <div className={s.card}>
       <div className={s.header}>
         <div className={s.titleRow}>
-          <div className="h-3 w-3 rounded-full bg-purple-500 animate-pulse" />
+          <div className="h-3 w-3 rounded-full bg-neutral-300 animate-pulse" />
           <h2 className="text-lg font-bold text-white tracking-wide">Solana Devnet</h2>
         </div>
         <span className={`${s.badge} ${props.connected ? s.badgeConnected : s.badgeDisconnected}`}>
@@ -23,12 +23,12 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
         <div className="flex flex-col sm:flex-row justify-between gap-4">
           <div>
             <div className={s.statLabel}>Token Mint Balance</div>
-            <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-purple-400">SPL</span></div>
+            <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-neutral-400">SPL</span></div>
             <div className={s.statSub}>Mint: {props.mintAddress ? shortAddr(props.mintAddress) : 'No Mint Initialized'}</div>
           </div>
           <div className="sm:text-right">
             <div className={s.statLabel}>Wallet Gas Balance</div>
-            <div className={s.statValue}>{props.nativeBalance} <span className="text-sm font-normal text-purple-400">SOL</span></div>
+            <div className={s.statValue}>{props.nativeBalance} <span className="text-sm font-normal text-neutral-400">SOL</span></div>
             <div className={s.statSub}>Devnet Network</div>
           </div>
         </div>
@@ -116,7 +116,7 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
         {props.txSig && (
           <div className={s.txNotice}>
             <span className="font-semibold text-neutral-300">Transaction Confirmed:</span>
-            <a href={`https://explorer.solana.com/tx/${props.txSig}?cluster=devnet`} target="_blank" rel="noreferrer" className="text-purple-400 hover:underline">
+            <a href={`https://explorer.solana.com/tx/${props.txSig}?cluster=devnet`} target="_blank" rel="noreferrer" className="text-neutral-300 hover:text-white transition-colors hover:underline">
               View on Solana Explorer
             </a>
           </div>

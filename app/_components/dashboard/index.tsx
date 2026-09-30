@@ -6,6 +6,7 @@ import { ThreeDVaultCard } from '../three-d-vault-card';
 import { EvmPanel } from '../evm-panel';
 import { SolanaPanel } from '../solana-panel';
 import { useWalletMode } from '@/app/_context/WalletModeContext';
+import { Lock } from 'lucide-react';
 
 export function Dashboard() {
   const { wallet, preferredChain, logout } = useWalletMode();
@@ -34,7 +35,7 @@ export function Dashboard() {
       if (!wallet?.evm) {
         return (
           <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-neutral-900 border border-neutral-800 rounded-2xl animate-in fade-in">
-            <span className="text-4xl mb-4">🔒</span>
+            <Lock className="w-8 h-8 text-neutral-500 mb-4" />
             <h3 className="text-lg font-bold text-white mb-2">Ethereum Panel Locked</h3>
             <p className="text-sm text-neutral-400 mb-6 max-w-sm">
               You did not import an Ethereum Private Key or a 12-Word Recovery Phrase.
@@ -50,7 +51,7 @@ export function Dashboard() {
       if (!wallet?.solana) {
         return (
           <div className="w-full p-8 flex flex-col items-center justify-center text-center bg-neutral-900 border border-neutral-800 rounded-2xl animate-in fade-in">
-            <span className="text-4xl mb-4">🔒</span>
+            <Lock className="w-8 h-8 text-neutral-500 mb-4" />
             <h3 className="text-lg font-bold text-white mb-2">Solana Panel Locked</h3>
             <p className="text-sm text-neutral-400 mb-6 max-w-sm">
               You did not import a Solana Private Key or a 12-Word Recovery Phrase.
@@ -66,13 +67,8 @@ export function Dashboard() {
   };
 
   return (
-    <div className="relative min-h-screen bg-neutral-950 text-neutral-100 flex flex-col items-center justify-between p-4 sm:p-8 overflow-x-hidden selection:bg-indigo-500/30">
-      {/* Floating 3D Cybernetic Orbs */}
-      <div className="pointer-events-none fixed -top-40 -left-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-[120px] -z-10 animate-pulse" />
-      <div className="pointer-events-none fixed top-1/2 -right-40 w-96 h-96 bg-purple-600/15 rounded-full blur-[120px] -z-10" />
-      <div className="pointer-events-none fixed -bottom-40 left-1/3 w-96 h-96 bg-pink-600/10 rounded-full blur-[120px] -z-10" />
-
-      <div className="w-full max-w-3xl flex flex-col gap-6 z-10">
+    <div className="relative min-h-screen bg-[#000000] text-neutral-200 flex flex-col items-center justify-between p-4 sm:p-8 overflow-x-hidden selection:bg-white selection:text-black">
+      <div className="w-full max-w-4xl flex flex-col gap-6 z-10">
         <VaultHeader
           selectedChain={selectedChain}
           onSelectChain={handleSelectChain}
@@ -87,13 +83,6 @@ export function Dashboard() {
           {renderPanel()}
         </main>
       </div>
-
-      <footer className="mt-12 z-10 w-full max-w-3xl border-t border-neutral-900 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-        <span>Aetherius Vault — Autonomous Multi-Chain Cryptographic Terminal</span>
-        <span className="font-mono text-[11px] text-neutral-600">
-          Stateless • In-Memory
-        </span>
-      </footer>
     </div>
   );
 }

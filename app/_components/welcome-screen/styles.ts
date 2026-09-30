@@ -1,0 +1,17 @@
+export const welcomeStyles = {
+  root: 'min-h-screen bg-neutral-950 text-neutral-100 flex flex-col items-center justify-center p-6 relative overflow-hidden gap-10',
+  orb1: 'pointer-events-none fixed -top-40 -left-40 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[140px] -z-10 animate-pulse',
+  orb2: 'pointer-events-none fixed -bottom-40 -right-40 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[140px] -z-10',
+  orb3: 'pointer-events-none fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-600/10 rounded-full blur-[120px] -z-10',
+  hero: 'flex flex-col items-center text-center gap-5 z-10 max-w-xl',
+  badge: 'px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/25 flex items-center gap-2',
+  logo: 'w-18 h-18 w-20 h-20 rounded-3xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-4xl shadow-2xl shadow-indigo-500/40',
+  title: 'text-5xl sm:text-6xl font-black tracking-tight text-white leading-none',
+  subtitle: 'text-neutral-400 text-sm sm:text-base max-w-md leading-relaxed',
+  ctaRow: 'flex flex-col sm:flex-row items-center gap-3 mt-2',
+  primaryCta: 'px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold text-sm shadow-2xl shadow-indigo-500/30 transition-all active:scale-95 flex items-center gap-2',
+  secondaryCta: 'px-8 py-4 rounded-2xl bg-neutral-900 border border-neutral-700 hover:border-neutral-500 text-neutral-200 font-semibold text-sm transition-all flex items-center gap-2',
+  featureGrid: 'grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl z-10',
+  featureCard: 'p-4 rounded-2xl bg-neutral-900/60 border border-neutral-800/80 flex flex-col gap-2 hover:border-neutral-700 transition-colors',
+  featureMono: 'z-10 text-[11px] text-neutral-600 font-mono tracking-widest',
+};

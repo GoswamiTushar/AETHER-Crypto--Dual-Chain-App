@@ -1,0 +1,18 @@
+export const threeDStyles = {
+  container: 'w-full perspective-[1200px] mb-6',
+  cardWrap: 'relative w-full rounded-3xl p-[1.5px] transition-transform duration-200 ease-out preserve-3d shadow-2xl',
+  cardGradient: 'bg-gradient-to-br from-indigo-500/30 via-purple-500/20 to-pink-500/30',
+  innerCard: 'relative w-full rounded-[23px] bg-neutral-900/90 backdrop-blur-2xl p-6 sm:p-7 flex flex-col gap-5 border border-white/10 overflow-hidden',
+  shineOverlay: 'pointer-events-none absolute -inset-full bg-gradient-to-tr from-transparent via-white/5 to-transparent rotate-12 transition-all duration-700',
+  badgeRow: 'flex items-center justify-between',
+  networkBadge: 'px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-md flex items-center gap-1.5 shadow-sm',
+  evmBadge: 'bg-indigo-500/10 text-indigo-300 border-indigo-500/30',
+  solanaBadge: 'bg-purple-500/10 text-purple-300 border-purple-500/30',
+  addressBox: 'p-3.5 rounded-2xl bg-neutral-950/70 border border-neutral-800/80 flex items-center justify-between gap-3 group hover:border-indigo-500/40 transition-colors',
+  addressText: 'font-mono text-xs text-neutral-300 truncate select-all',
+  copyBtn: 'p-2 rounded-lg bg-neutral-800/70 hover:bg-neutral-700 text-neutral-300 hover:text-white transition-colors shrink-0 text-xs font-semibold',
+  actionRow: 'flex flex-wrap items-center gap-2 pt-1',
+  chipBtn: 'px-3 py-1.5 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-xs font-semibold text-neutral-200 transition-all border border-neutral-700/60 shadow-sm active:scale-95',
+  faucetBtn: 'px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 border border-emerald-400/50 text-sm font-bold text-white transition-all shadow-lg shadow-emerald-500/20 active:scale-95 disabled:opacity-50 flex items-center gap-2',
+  phraseCard: 'mt-3 p-4 rounded-2xl bg-neutral-950 border border-neutral-800 flex flex-col gap-2.5 animate-in fade-in duration-200',
+};

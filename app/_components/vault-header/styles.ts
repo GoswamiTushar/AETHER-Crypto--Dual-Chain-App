@@ -1,0 +1,15 @@
+export const headerStyles = {
+  header: 'flex flex-col lg:flex-row lg:items-center justify-between gap-5 border-b border-neutral-800/80 pb-6',
+  brandCol: 'flex flex-col gap-1',
+  topBadgeRow: 'flex items-center gap-2.5',
+  atlasBadge: 'px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/25 flex items-center gap-1.5 shadow-sm',
+  titleRow: 'flex items-center gap-3 mt-1',
+  title: 'text-2xl sm:text-3xl font-black tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-100 to-indigo-300',
+  subtitle: 'text-xs text-neutral-400 max-w-md leading-relaxed',
+  actionsCol: 'flex flex-wrap items-center gap-3',
+  selectWrap: 'relative',
+  select: 'appearance-none bg-neutral-900/90 border border-neutral-700/80 hover:border-neutral-600 rounded-2xl px-4 py-2.5 pr-9 text-xs font-bold text-neutral-100 focus:outline-none focus:border-indigo-500 cursor-pointer shadow-md transition-all',
+  authBtn: 'px-4 py-2.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all active:scale-95 flex items-center gap-1.5',
+  userChip: 'flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-neutral-900 border border-neutral-800 text-xs text-neutral-200',
+  logoutBtn: 'p-1.5 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-red-400 transition-colors',
+};

@@ -1,0 +1,20 @@
+# Antigravity General System Rules
+
+## 1. File Length & Subcomponents
+- **Strict Code Limit:** Never generate or modify code files to exceed **100 lines of code**. 
+- **Atomic Breakdown:** If a component grows near or past 100 lines, immediately break it down by extracting inner elements into smaller, separate reusable files.
+
+## 2. Directory & Architecture Isolation
+- **No Global Component Dumping:** Do not save components into a global `/components` folder. 
+- **Page-Level Location:** Put components inside subfolders directly belonging to the page or feature context they build (e.g., `app/dashboard/_components/`).
+- **Three-File Component Separation:** When writing a component, split the implementation inside its folder into three distinct layers:
+  1. `index.tsx` -> Logical Component (React hooks, state management, Web3 functions).
+  2. `view.tsx` -> Visual Presentation Component (JSX markup only, styling and logic passed via TypeScript props).
+  3. `styles.ts` -> Style Abstraction Layer (Stores clean Tailwind variable structures to keep code highly readable).
+
+## 3. Backend & Cryptography Security
+- **Secure Server Execution:** Execute all private wallet parameters, RPC token authorizations, and node API executions inside Next.js Route Handlers (`app/api/`).
+- **Client Shielding:** Never expose environment configurations or network access keys directly to front-facing browser components.
+
+## 4. Context Efficiency
+- **Token Pruning:** Read from the compressed `repomix-output.json` project matrix map file to quickly trace component paths instead of scanning the full folder tree manually.

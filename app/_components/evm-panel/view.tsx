@@ -24,7 +24,7 @@ export function EvmPanelView(props: EvmPanelViewProps) {
     <div className={s.card}>
       <div className={s.header}>
         <div className={s.titleRow}>
-          <div className="h-3 w-3 rounded-full bg-neutral-300 animate-pulse" />
+          <div className="h-3 w-3 rounded-full bg-sky-400 animate-pulse shadow-[0_0_8px_rgba(56,189,248,0.6)]" />
           <h2 className="text-lg font-semibold text-white tracking-wide">Ethereum Sepolia</h2>
         </div>
         <span className={`${s.badge} ${props.isConnected ? s.badgeConnected : s.badgeDisconnected}`}>
@@ -33,8 +33,30 @@ export function EvmPanelView(props: EvmPanelViewProps) {
       </div>
 
       <div className={s.balanceCard}>
-        <div className={s.statLabel}>{props.symbol} Balance</div>
-        <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-neutral-400">{props.symbol}</span></div>
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div>
+            <div className={s.statLabel}>{props.symbol} Balance</div>
+            <div className={s.statValue}>{props.balance} <span className="text-sm font-normal text-neutral-400">{props.symbol}</span></div>
+          </div>
+          <div className="sm:text-right">
+            <div className={s.statLabel}>Wallet Gas Balance</div>
+            <div className={s.statValue}>{props.nativeBalance} <span className="text-sm font-normal text-neutral-400">ETH</span></div>
+            <div className="flex items-center sm:justify-end gap-2 mt-1">
+              <div className={s.statSub}>Sepolia Network</div>
+              {props.address && (
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText(props.address!);
+                    window.open('https://cloud.google.com/application/web3/faucet/ethereum/sepolia', '_blank');
+                  }}
+                  className="text-[10px] uppercase font-bold tracking-wider text-sky-400/70 hover:text-sky-300 transition-colors underline"
+                >
+                  Get ETH (Faucet)
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-col gap-4">
@@ -107,8 +129,8 @@ export function EvmPanelView(props: EvmPanelViewProps) {
 
         {props.txHash && (
           <div className={s.txNotice}>
-            <span className="font-semibold text-neutral-300">Transaction Confirmed:</span>
-            <a href={`https://sepolia.etherscan.io/tx/${props.txHash}`} target="_blank" rel="noreferrer" className="text-neutral-300 hover:text-white hover:underline transition-colors">
+            <span className="font-semibold text-sky-300">Transaction Confirmed:</span>
+            <a href={`https://sepolia.etherscan.io/tx/${props.txHash}`} target="_blank" rel="noreferrer" className="text-violet-300 hover:text-violet-200 hover:underline transition-colors">
               View on Etherscan
             </a>
           </div>

@@ -18,7 +18,7 @@ export function SolanaPanel() {
       if (saved) {
         try {
           return JSON.parse(saved);
-        } catch {}
+        } catch { }
       }
     }
     return [];
@@ -33,7 +33,7 @@ export function SolanaPanel() {
         try {
           const parsed = JSON.parse(saved);
           if (parsed.length > 0) return parsed[0];
-        } catch {}
+        } catch { }
       }
     }
     return '';
@@ -41,7 +41,7 @@ export function SolanaPanel() {
 
   const [tokenName, setTokenName] = useState('');
   const [tokenSymbol, setTokenSymbol] = useState('');
-  
+
   const [mintAmount, setMintAmount] = useState('');
   const [sendTo, setSendTo] = useState('');
   const [sendAmount, setSendAmount] = useState('');
@@ -52,7 +52,7 @@ export function SolanaPanel() {
   const inApp = useInAppSolana(connection, wallet?.solana?.keypair);
   useEffect(() => {
     if (!activePubkeyStr) return;
-    
+
     // Find all token accounts owned by this wallet
     connection.getParsedTokenAccountsByOwner(new PublicKey(activePubkeyStr), {
       programId: new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA')
@@ -69,7 +69,7 @@ export function SolanaPanel() {
   const fetchBalance = useCallback(async () => {
     await Promise.resolve(); // Yield to event loop to avoid synchronous setState warnings
     if (!activePubkeyStr) return;
-    
+
     // Fetch Native SOL Balance
     try {
       const lamports = await connection.getBalance(new PublicKey(activePubkeyStr));
@@ -87,13 +87,13 @@ export function SolanaPanel() {
       const ata = await getAssociatedTokenAddress(new PublicKey(mintAddress), new PublicKey(activePubkeyStr));
       const res = await connection.getTokenAccountBalance(ata);
       setBalance(res.value.uiAmountString || '0');
-    } catch { 
-      setBalance('0'); 
+    } catch {
+      setBalance('0');
     }
   }, [activePubkeyStr, mintAddress, connection]);
 
-  useEffect(() => { 
-    fetchBalance(); 
+  useEffect(() => {
+    fetchBalance();
   }, [fetchBalance]);
 
   const handleCreateMintAndAta = async () => {
@@ -123,7 +123,7 @@ export function SolanaPanel() {
 
   const handleTransfer = async () => {
     if (!mintAddress || !sendTo || !sendAmount) return;
-    
+
     if (Number(sendAmount) > Number(balance)) {
       alert(`Insufficient funds. You only have ${balance} tokens. Please mint more first.`);
       return;

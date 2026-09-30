@@ -1,0 +1,45 @@
+<svg viewBox="0 0 100 100" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fav-evm" x1="15" y1="10" x2="55" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#4338CA" />
+    </linearGradient>
+    <linearGradient id="fav-sol" x1="85" y1="10" x2="45" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C084FC" />
+      <stop offset="50%" stop-color="#A855F7" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    <linearGradient id="fav-top" x1="50" y1="6" x2="50" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#BAE6FD" />
+    </linearGradient>
+    <radialGradient id="fav-core" cx="50" cy="50" r="16" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#09090B" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Dark base background with rounded corners for tab clarity -->
+  <rect width="100" height="100" rx="22" fill="#0C0C0E" />
+  <rect width="98" height="98" x="1" y="1" rx="21" stroke="#27272A" stroke-width="1.5" />
+
+  <!-- Summit Prism -->
+  <path d="M 50 14 L 66 32 L 50 26 L 34 32 Z" fill="url(#fav-top)" stroke="#FFFFFF" stroke-width="1" stroke-linejoin="round" />
+
+  <!-- Left EVM Wing -->
+  <path d="M 50 26 L 34 32 L 18 50 L 34 68 L 46 56 L 32 50 L 41 40 L 50 26 Z" fill="url(#fav-evm)" stroke="#38BDF8" stroke-width="1" stroke-linejoin="round" />
+
+  <!-- Right SVM Wing -->
+  <path d="M 50 26 L 66 32 L 82 50 L 66 68 L 54 56 L 68 50 L 59 40 L 50 26 Z" fill="url(#fav-sol)" stroke="#E879F9" stroke-width="1" stroke-linejoin="round" />
+
+  <!-- Lower Base Prism -->
+  <path d="M 34 68 L 50 86 L 50 62 Z" fill="#1E1B4B" stroke="#6366F1" stroke-width="0.8" stroke-linejoin="round" />
+  <path d="M 50 86 L 66 68 L 50 62 Z" fill="#4A044E" stroke="#EC4899" stroke-width="0.8" stroke-linejoin="round" />
+
+  <!-- Center Diamond Crystal -->
+  <path d="M 50 38 L 62 50 L 50 62 L 38 50 Z" fill="#09090B" stroke="#A1A1AA" stroke-width="1" stroke-linejoin="round" />
+  <circle cx="50" cy="50" r="8" fill="url(#fav-core)" />
+  <circle cx="50" cy="50" r="2.5" fill="#FFFFFF" />
+</svg>

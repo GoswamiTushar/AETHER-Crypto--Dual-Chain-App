@@ -1,11 +1,11 @@
 'use client';
 
 import React, { createContext, useContext, useState } from 'react';
-import { 
-  DualChainWallet, 
-  generateDualChainWallet, 
-  importEvmPrivateKey, 
-  importSolanaPrivateKey 
+import {
+  DualChainWallet,
+  generateDualChainWallet,
+  importEvmPrivateKey,
+  importSolanaPrivateKey
 } from '@/services/inAppWallet';
 
 interface WalletModeContextType {
@@ -50,9 +50,9 @@ export function WalletModeProvider({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <WalletModeContext.Provider value={{ 
-      wallet, preferredChain, createWallet, importWallet, 
-      importEvmWallet, importSolanaWallet, logout 
+    <WalletModeContext.Provider value={{
+      wallet, preferredChain, createWallet, importWallet,
+      importEvmWallet, importSolanaWallet, logout
     }}>
       {children}
     </WalletModeContext.Provider>

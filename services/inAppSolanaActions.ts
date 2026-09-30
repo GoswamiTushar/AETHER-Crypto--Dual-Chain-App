@@ -18,7 +18,7 @@ export async function requestDevnetAirdrop(connection: Connection, pubkey: Publi
 
 export async function inAppCreateMintAndAta(connection: Connection, payer: Keypair, name: string = 'Aetherius Coin', symbol: string = 'ATH') {
   let uri = 'https://raw.githubusercontent.com/solana-developers/professional-education/main/labs/sample-token-metadata.json';
-  
+
   try {
     const res = await fetch('/api/upload-metadata', {
       method: 'POST',

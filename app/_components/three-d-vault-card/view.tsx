@@ -17,13 +17,13 @@ export function CardView(p: CardViewStateProps) {
           <div className={s.shineOverlay} />
           <div className={s.badgeRow}>
             <div className={`${s.networkBadge} ${isEvm ? s.evmBadge : s.solanaBadge}`}>
-              <div className={`w-2 h-2 rounded-full ${isEvm ? 'bg-blue-400' : 'bg-purple-400'} animate-pulse`} />
+              <div className={`w-2 h-2 rounded-full ${isEvm ? 'bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]' : 'bg-violet-400 shadow-[0_0_6px_rgba(167,139,250,0.8)]'} animate-pulse`} />
               <span>{isEvm ? 'Ethereum Sepolia Testnet' : 'Solana Devnet'}</span>
             </div>
           </div>
 
           <div>
-            <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest block mb-1">
+            <span className={`text-[11px] font-bold uppercase tracking-widest block mb-1 ${isEvm ? 'text-sky-400/60' : 'text-violet-400/60'}`}>
               Active In-App Cryptographic Address
             </span>
             <div className={s.addressBox}>
@@ -75,7 +75,7 @@ export function CardView(p: CardViewStateProps) {
                   </div>
                   <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     {words.map((w, i) => (
-                      <div key={i} className="px-3 py-2 rounded-none bg-[#050505] border border-neutral-800 text-xs font-mono text-neutral-300">
+                      <div key={i} className="px-3 py-2 rounded-none bg-[#050508] border border-indigo-500/15 text-xs font-mono text-neutral-300">
                         <span className="text-neutral-500 text-[10px] mr-1.5">{i + 1}.</span>{w}
                       </div>
                     ))}

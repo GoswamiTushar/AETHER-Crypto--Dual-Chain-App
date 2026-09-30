@@ -3,8 +3,8 @@
 import React from 'react';
 import { VaultHeaderProps } from './types';
 import { headerStyles as s } from './styles';
-import { Layers } from 'lucide-react';
 import { useWalletMode } from '@/app/_context/WalletModeContext';
+import { AetheriusLogo } from '../AetheriusLogo';
 
 export function VaultHeaderView(p: VaultHeaderProps) {
   const { wallet, logout } = useWalletMode();
@@ -13,8 +13,8 @@ export function VaultHeaderView(p: VaultHeaderProps) {
     <header className={s.header}>
       <div className={s.brandCol}>
         <div className={s.titleRow}>
-          <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center text-white shadow-sm">
-            <Layers className="w-4 h-4" />
+          <div className="w-8 h-8 rounded-lg bg-neutral-900/90 border border-neutral-800 flex items-center justify-center shadow-sm">
+            <AetheriusLogo size={22} withGlow={true} />
           </div>
           <h1 className={s.title}>Aetherius</h1>
         </div>

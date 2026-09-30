@@ -37,6 +37,7 @@ export function EvmPanel() {
       contractAddress={contractAddress}
       symbol={token.symbol}
       balance={token.balance}
+      nativeBalance={token.nativeBalance}
       onContractAddressChange={setContractAddress}
       mintTo={mintTo}
       setMintTo={setMintTo}

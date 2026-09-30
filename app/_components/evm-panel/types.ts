@@ -4,6 +4,7 @@ export interface EvmPanelViewProps {
   contractAddress: string;
   symbol: string;
   balance: string;
+  nativeBalance: string;
   mintTo: string;
   setMintTo: (val: string) => void;
   mintAmount: string;

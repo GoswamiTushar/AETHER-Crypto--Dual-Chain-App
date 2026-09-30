@@ -14,14 +14,16 @@ export function getEvmClients(account?: Account) {
 
 export async function fetchInAppEvmInfo(address: `0x${string}`, target = SEPOLIA_CONTRACT_ADDRESS) {
   const { publicClient } = getEvmClients();
-  const [dec, bal, sym] = await Promise.all([
+  const [dec, bal, sym, nativeBal] = await Promise.all([
     publicClient.readContract({ address: target, abi: ERC20_ABI, functionName: 'decimals' }).catch(() => 18),
     publicClient.readContract({ address: target, abi: ERC20_ABI, functionName: 'balanceOf', args: [address] }).catch(() => BigInt(0)),
     publicClient.readContract({ address: target, abi: ERC20_ABI, functionName: 'symbol' }).catch(() => 'ATK'),
+    publicClient.getBalance({ address }).catch(() => BigInt(0)),
   ]);
   return {
     symbol: String(sym),
     balance: Number(formatUnits(bal as bigint, dec as number)).toLocaleString(undefined, { maximumFractionDigits: 4 }),
+    nativeBalance: Number(formatUnits(nativeBal, 18)).toLocaleString(undefined, { maximumFractionDigits: 4 }),
   };
 }
 

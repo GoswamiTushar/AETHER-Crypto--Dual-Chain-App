@@ -4,7 +4,7 @@ import React from 'react';
 import { SolanaPanelViewProps } from './types';
 import { solanaStyles as s } from './styles';
 
-import { Info } from 'lucide-react';
+import { Info, RefreshCw } from 'lucide-react';
 
 const Tooltip = ({ title, content }: { title: string, content: string }) => (
   <div className="group relative flex items-center gap-2 cursor-help">
@@ -24,7 +24,7 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
     <div className={s.card}>
       <div className={s.header}>
         <div className={s.titleRow}>
-          <div className="h-3 w-3 rounded-full bg-neutral-300 animate-pulse" />
+          <div className="h-3 w-3 rounded-full bg-violet-400 animate-pulse shadow-[0_0_8px_rgba(167,139,250,0.6)]" />
           <h2 className="text-lg font-bold text-white tracking-wide">Solana Devnet</h2>
         </div>
         <span className={`${s.badge} ${props.connected ? s.badgeConnected : s.badgeDisconnected}`}>
@@ -40,7 +40,19 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
             <div className={s.statSub}>Mint: {props.mintAddress ? shortAddr(props.mintAddress) : 'No Mint Initialized'}</div>
           </div>
           <div className="sm:text-right">
-            <div className={s.statLabel}>Wallet Gas Balance</div>
+            <div className="flex items-center sm:justify-end gap-1.5 mb-1">
+              <div className={s.statLabel}>Wallet Gas Balance</div>
+              {props.onRefreshBalance && (
+                <button
+                  type="button"
+                  onClick={props.onRefreshBalance}
+                  title="Refresh SOL & SPL Balances"
+                  className="text-neutral-500 hover:text-neutral-200 transition-colors p-0.5 rounded"
+                >
+                  <RefreshCw className={`w-3 h-3 ${props.isRefreshingBalance ? 'animate-spin text-purple-400' : ''}`} />
+                </button>
+              )}
+            </div>
             <div className={s.statValue}>{props.nativeBalance} <span className="text-sm font-normal text-neutral-400">SOL</span></div>
             <div className={s.statSub}>Devnet Network</div>
           </div>
@@ -156,8 +168,8 @@ export function SolanaPanelView(props: SolanaPanelViewProps) {
 
         {props.txSig && (
           <div className={s.txNotice}>
-            <span className="font-semibold text-neutral-300">Transaction Confirmed:</span>
-            <a href={`https://explorer.solana.com/tx/${props.txSig}?cluster=devnet`} target="_blank" rel="noreferrer" className="text-neutral-300 hover:text-white transition-colors hover:underline">
+            <span className="font-semibold text-sky-300">Transaction Confirmed:</span>
+            <a href={`https://explorer.solana.com/tx/${props.txSig}?cluster=devnet`} target="_blank" rel="noreferrer" className="text-violet-300 hover:text-violet-200 transition-colors hover:underline">
               View on Solana Explorer
             </a>
           </div>

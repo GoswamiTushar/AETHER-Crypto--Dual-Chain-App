@@ -5,6 +5,7 @@ import { fetchInAppEvmInfo, inAppEvmMint, inAppEvmSend } from '@/services/inAppE
 
 export function useInAppEvm(account?: Account, contractAddress: string = SEPOLIA_CONTRACT_ADDRESS) {
   const [balance, setBalance] = useState('0');
+  const [nativeBalance, setNativeBalance] = useState('0');
   const [symbol, setSymbol] = useState('ATK');
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<`0x${string}`>();
@@ -17,9 +18,11 @@ export function useInAppEvm(account?: Account, contractAddress: string = SEPOLIA
     try {
       const info = await fetchInAppEvmInfo(account.address, target);
       setBalance(info.balance);
+      setNativeBalance(info.nativeBalance);
       setSymbol(info.symbol);
     } catch {
       setBalance('0');
+      setNativeBalance('0');
     }
   }, [account, target]);
 
@@ -55,5 +58,5 @@ export function useInAppEvm(account?: Account, contractAddress: string = SEPOLIA
     }
   };
 
-  return { balance, symbol, isProcessing, txHash, mint, transfer };
+  return { balance, nativeBalance, symbol, isProcessing, txHash, mint, transfer };
 }

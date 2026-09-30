@@ -22,4 +22,6 @@ export interface SolanaPanelViewProps {
   sendAmount: string;
   setSendAmount: (val: string) => void;
   onTransfer: () => void;
+  onRefreshBalance?: () => void;
+  isRefreshingBalance?: boolean;
 }

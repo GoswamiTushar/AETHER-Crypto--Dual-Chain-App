@@ -5,6 +5,8 @@ import { welcomeStyles as s } from './styles';
 import { useWalletMode } from '@/app/_context/WalletModeContext';
 import { generateMnemonic, english } from 'viem/accounts';
 import { Cpu, Layers, RefreshCcw, KeyRound, Plus, ChevronRight, X } from 'lucide-react';
+import { WaveBackground } from './WaveBackground';
+import { AetheriusLogo } from '../AetheriusLogo';
 
 const FEATURES = [
   {
@@ -26,9 +28,9 @@ const FEATURES = [
 
 export function WelcomeScreen() {
   const { importWallet, importEvmWallet, importSolanaWallet } = useWalletMode();
-  
+
   const [view, setView] = useState<'main' | 'import' | 'create'>('main');
-  const [importMode, setImportMode] = useState<'mnemonic'|'solana'|'evm'>('mnemonic');
+  const [importMode, setImportMode] = useState<'mnemonic' | 'solana' | 'evm'>('mnemonic');
   const [mnemonicInput, setMnemonicInput] = useState('');
   const [generatedMnemonic, setGeneratedMnemonic] = useState('');
 
@@ -61,11 +63,19 @@ export function WelcomeScreen() {
 
   return (
     <div className={s.root}>
-      <div className={s.leftCol}>
-        <div className={s.logo}>
-          <Layers className="w-8 h-8 text-white" strokeWidth={1.5} />
+      <div className={`${s.leftCol} relative overflow-hidden`}>
+        <WaveBackground />
+        <div className={`${s.logo} relative z-10 flex items-center gap-3.5`}>
+          <div className="relative p-2.5 rounded-xl bg-neutral-900/80 border border-neutral-800/80 backdrop-blur-md shadow-2xl flex items-center justify-center group hover:border-neutral-700/80 transition-all">
+            <AetheriusLogo size={36} withGlow={true} animated={true} />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-300 font-bold flex items-center gap-2">
+              Aetherius
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col relative z-10">
           <h1 className={s.title}>Aetherius</h1>
           <p className={s.subtitle}>
             A unified development environment for Ethereum and Solana. Build, deploy, and manage digital assets from a single interface.
@@ -91,19 +101,19 @@ export function WelcomeScreen() {
           {view === 'import' && (
             <div className="w-full flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-2">
               <div className="flex bg-[#0a0a0a] rounded-none p-1 text-[11px] font-bold text-neutral-500 border border-neutral-800">
-                <button 
+                <button
                   onClick={() => setImportMode('mnemonic')}
                   className={`flex-1 py-3 transition-colors ${importMode === 'mnemonic' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
                   BIP-39
                 </button>
-                <button 
+                <button
                   onClick={() => setImportMode('evm')}
                   className={`flex-1 py-3 transition-colors ${importMode === 'evm' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
                   EVM
                 </button>
-                <button 
+                <button
                   onClick={() => setImportMode('solana')}
                   className={`flex-1 py-3 transition-colors ${importMode === 'solana' ? 'bg-neutral-200 text-neutral-900' : 'hover:text-white'}`}
                 >
@@ -146,7 +156,7 @@ export function WelcomeScreen() {
               </div>
             </div>
           )}
-          
+
           {view === 'main' && (
             <div className={s.featureGrid}>
               {FEATURES.map((f) => (

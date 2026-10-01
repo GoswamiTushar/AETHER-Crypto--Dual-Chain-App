@@ -32,7 +32,6 @@ export function ContractDeployer({ onDeployed }: ContractDeployerProps) {
       );
       setDeployedAddress(res.contractAddress);
       onDeployed(res.contractAddress);
-      setIsOpen(false);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : String(err);
       if (msg.includes('insufficient funds') || msg.includes('exceeds the balance')) {

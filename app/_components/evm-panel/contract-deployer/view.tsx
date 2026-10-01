@@ -75,16 +75,26 @@ export function ContractDeployerView(props: ContractDeployerViewProps) {
           )}
 
           {props.deployedAddress && (
-            <div className="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-none p-3 flex items-center justify-between">
-              <span>Deployed: {props.deployedAddress.slice(0, 6)}...{props.deployedAddress.slice(-4)}</span>
-              <a
-                href={`https://sepolia.etherscan.io/address/${props.deployedAddress}`}
-                target="_blank"
-                rel="noreferrer"
-                className="underline hover:text-emerald-300"
-              >
-                Etherscan
-              </a>
+            <div className="flex flex-col gap-2 mt-2">
+              <div className="text-[11px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-none p-3 flex flex-col gap-1.5">
+                <div className="flex items-center justify-between font-bold">
+                  <span>✅ Contract Deployed Successfully!</span>
+                  <a
+                    href={`https://sepolia.etherscan.io/address/${props.deployedAddress}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-normal underline hover:text-emerald-300"
+                  >
+                    View on Etherscan
+                  </a>
+                </div>
+                <div className="text-neutral-300">
+                  <span className="text-emerald-500/80 font-bold uppercase tracking-wide">Important:</span> Please copy and save this address somewhere safe. If you switch computers, you will need this to interact with your token.
+                </div>
+                <div className="bg-[#050810] border border-emerald-500/20 p-2 font-mono text-emerald-200 break-all select-all mt-1">
+                  {props.deployedAddress}
+                </div>
+              </div>
             </div>
           )}
         </div>

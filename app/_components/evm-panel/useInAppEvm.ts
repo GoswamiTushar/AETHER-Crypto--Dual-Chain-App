@@ -26,7 +26,11 @@ export function useInAppEvm(account?: Account, contractAddress: string = SEPOLIA
     }
   }, [account, target]);
 
-  useEffect(() => { refresh(); }, [refresh]);
+  useEffect(() => { 
+    refresh();
+    const interval = setInterval(refresh, 10000);
+    return () => clearInterval(interval);
+  }, [refresh]);
 
   const mint = async (to: `0x${string}`, amount: string, onDone: () => void) => {
     if (!account) return;

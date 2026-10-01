@@ -88,7 +88,7 @@ export function WelcomeScreen() {
           {view === 'main' && (
             <>
               <button onClick={handleCreateInit} className={s.buttonPrimary}>
-                <span>Initialize Workspace</span>
+                <span>Create Wallet</span>
                 <Plus className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
               </button>
               <button onClick={() => setView('import')} className={s.buttonSecondary}>

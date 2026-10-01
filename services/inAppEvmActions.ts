@@ -1,6 +1,7 @@
-import { createWalletClient, createPublicClient, http, parseUnits, formatUnits, Account } from 'viem';
+import { createWalletClient, createPublicClient, http, parseUnits, Account } from 'viem';
 import { sepolia } from 'viem/chains';
 import { SEPOLIA_CONTRACT_ADDRESS, ERC20_ABI } from '@/config/contracts';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
 const rpcUrl = process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
 
@@ -22,8 +23,8 @@ export async function fetchInAppEvmInfo(address: `0x${string}`, target = SEPOLIA
   ]);
   return {
     symbol: String(sym),
-    balance: Number(formatUnits(bal as bigint, dec as number)).toLocaleString(undefined, { maximumFractionDigits: 4 }),
-    nativeBalance: Number(formatUnits(nativeBal, 18)).toLocaleString(undefined, { maximumFractionDigits: 4 }),
+    balance: formatTokenAmount(bal as bigint, dec as number),
+    nativeBalance: formatTokenAmount(nativeBal, 18),
   };
 }
 

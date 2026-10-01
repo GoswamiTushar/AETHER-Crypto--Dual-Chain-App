@@ -3,6 +3,7 @@
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { formatUnits, parseUnits } from 'viem';
 import { SEPOLIA_CONTRACT_ADDRESS, ERC20_ABI } from '@/config/contracts';
+import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
 export function useEvmToken(address?: `0x${string}`) {
   const { data: symbol = 'TOKEN' } = useReadContract({
@@ -29,7 +30,7 @@ export function useEvmToken(address?: `0x${string}`) {
   const { isLoading: isConfirming } = useWaitForTransactionReceipt({ hash: txHash });
 
   const balanceFormatted = rawBalance !== undefined
-    ? Number(formatUnits(rawBalance, decimals)).toLocaleString(undefined, { maximumFractionDigits: 4 })
+    ? formatTokenAmount(rawBalance, decimals)
     : '0';
 
   const mint = (target: `0x${string}`, amount: string, onDone: () => void) => {

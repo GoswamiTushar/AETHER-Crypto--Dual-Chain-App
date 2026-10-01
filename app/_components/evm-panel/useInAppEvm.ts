@@ -1,16 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Account } from 'viem';
-import { SEPOLIA_CONTRACT_ADDRESS } from '@/config/contracts';
 import { fetchInAppEvmInfo, inAppEvmMint, inAppEvmSend } from '@/services/inAppEvmActions';
 
-export function useInAppEvm(account?: Account, contractAddress: string = SEPOLIA_CONTRACT_ADDRESS) {
+export function useInAppEvm(account?: Account, contractAddress: string = '') {
   const [balance, setBalance] = useState('0');
   const [nativeBalance, setNativeBalance] = useState('0');
-  const [symbol, setSymbol] = useState('ATK');
+  const [symbol, setSymbol] = useState('--');
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<`0x${string}`>();
 
-  const target = (contractAddress || SEPOLIA_CONTRACT_ADDRESS) as `0x${string}`;
+  const target = contractAddress as `0x${string}`;
 
   const refresh = useCallback(async () => {
     await Promise.resolve(); // Yield to avoid synchronous setState warnings

@@ -1,14 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SEPOLIA_CONTRACT_ADDRESS } from '@/config/contracts';
 import { useWalletMode } from '@/app/_context/WalletModeContext';
 import { useInAppEvm } from './useInAppEvm';
 import { EvmPanelView } from './view';
 
 export function EvmPanel() {
   const { wallet } = useWalletMode();
-  const [contractAddress, setContractAddress] = useState<string>(SEPOLIA_CONTRACT_ADDRESS);
+  const [contractAddress, setContractAddress] = useState<string>('');
   const [mintTo, setMintTo] = useState('');
   const [mintAmount, setMintAmount] = useState('');
   const [sendTo, setSendTo] = useState('');

@@ -2,28 +2,28 @@
 
 import { useReadContract, useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
 import { formatUnits, parseUnits } from 'viem';
-import { SEPOLIA_CONTRACT_ADDRESS, ERC20_ABI } from '@/config/contracts';
+import { ERC20_ABI } from '@/config/contracts';
 import { formatTokenAmount } from '@/utils/formatTokenAmount';
 
-export function useEvmToken(address?: `0x${string}`) {
+export function useEvmToken(contractAddress?: `0x${string}`, userAddress?: `0x${string}`) {
   const { data: symbol = 'TOKEN' } = useReadContract({
-    address: SEPOLIA_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: ERC20_ABI,
     functionName: 'symbol',
   });
 
   const { data: decimals = 18 } = useReadContract({
-    address: SEPOLIA_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: ERC20_ABI,
     functionName: 'decimals',
   });
 
   const { data: rawBalance, refetch: refetchBalance } = useReadContract({
-    address: SEPOLIA_CONTRACT_ADDRESS,
+    address: contractAddress,
     abi: ERC20_ABI,
     functionName: 'balanceOf',
-    args: address ? [address] : undefined,
-    query: { enabled: !!address },
+    args: userAddress ? [userAddress] : undefined,
+    query: { enabled: !!userAddress && !!contractAddress },
   });
 
   const { data: txHash, writeContract, isPending: isWriting } = useWriteContract();
@@ -34,9 +34,10 @@ export function useEvmToken(address?: `0x${string}`) {
     : '0';
 
   const mint = (target: `0x${string}`, amount: string, onDone: () => void) => {
+    if (!contractAddress) return;
     writeContract(
       {
-        address: SEPOLIA_CONTRACT_ADDRESS,
+        address: contractAddress,
         abi: ERC20_ABI,
         functionName: 'mint',
         args: [target, parseUnits(amount, decimals)],
@@ -49,9 +50,10 @@ export function useEvmToken(address?: `0x${string}`) {
   };
 
   const transfer = (to: `0x${string}`, amount: string, onDone: () => void) => {
+    if (!contractAddress) return;
     writeContract(
       {
-        address: SEPOLIA_CONTRACT_ADDRESS,
+        address: contractAddress,
         abi: ERC20_ABI,
         functionName: 'transfer',
         args: [to, parseUnits(amount, decimals)],
